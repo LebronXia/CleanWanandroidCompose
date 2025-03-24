@@ -48,6 +48,18 @@ gradlePlugin {
             id = "wanandroid.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+        register("androidLibrary"){
+            id = libs.plugins.wanandroid.android.library.asProvider().get().pluginId
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("androidLibraryCompose"){
+            id = libs.plugins.wanandroid.android.library.compose.get().pluginId
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+        register("androidFeature"){
+            id = libs.plugins.wanandroid.android.feature.get().pluginId
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
     }
 
 }
