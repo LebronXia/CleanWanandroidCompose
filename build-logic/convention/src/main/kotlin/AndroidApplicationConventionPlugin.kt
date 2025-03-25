@@ -15,6 +15,7 @@
  */
 
 import com.android.build.api.dsl.ApplicationExtension
+import com.riane.cleanwandroid.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -27,6 +28,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             apply(plugin = "org.jetbrains.kotlin.android")
 
             extensions.configure<ApplicationExtension> {
+                configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 35
                 @Suppress("UnstableApiUsage")
                 testOptions.animationsDisabled = true

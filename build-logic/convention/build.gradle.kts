@@ -60,6 +60,14 @@ gradlePlugin {
             id = libs.plugins.wanandroid.android.feature.get().pluginId
             implementationClass = "AndroidFeatureConventionPlugin"
         }
+        register("hilt") {
+            id = libs.plugins.wanandroid.hilt.get().pluginId
+            implementationClass = "HiltConventionPlugin"
+        }
+        register("jvmLibrary") {
+            id = libs.plugins.wanandroid.jvm.library.get().pluginId
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 
 }
