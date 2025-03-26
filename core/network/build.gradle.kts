@@ -13,11 +13,11 @@ android {
 
 dependencies {
 
-    implementation(libs.coil.kt)
-    implementation(libs.coil.kt.svg)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.kotlin.serialization)
+    api(libs.coil.kt)
+    api(libs.coil.kt.svg)
+    api(libs.kotlinx.serialization.json)
+    api(libs.okhttp.logging)
+    api(libs.retrofit.core)
+    api(libs.retrofit.kotlin.serialization)
     testImplementation(libs.kotlinx.coroutines.test)
 }

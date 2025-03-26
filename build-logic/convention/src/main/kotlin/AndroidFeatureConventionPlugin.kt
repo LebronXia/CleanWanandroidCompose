@@ -26,8 +26,8 @@ import org.gradle.kotlin.dsl.dependencies
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "nowinandroid.android.library")
-            apply(plugin = "nowinandroid.hilt")
+            apply(plugin = "wanandroid.android.library")
+            apply(plugin = "wanandroid.hilt")
             apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
 
             extensions.configure<LibraryExtension> {
@@ -36,8 +36,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-//                "implementation"(project(":core:ui"))
-//                "implementation"(project(":core:designsystem"))
+                "implementation"(project(":core:ui"))
+                //"implementation"(project(":core:designsystem"))
 
                 "implementation"(libs.findLibrary("androidx.hilt.navigation.compose").get())
                 "implementation"(libs.findLibrary("androidx.lifecycle.runtimeCompose").get())

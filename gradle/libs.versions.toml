@@ -88,6 +88,8 @@ androidx-dataStore = { group = "androidx.datastore", name = "datastore", version
 androidx-dataStore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "androidxDataStore" }
 androidx-dataStore-preferences = {group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore"}
 
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
