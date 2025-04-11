@@ -17,10 +17,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class DataModule {
     @Binds
-    @Singleton
-    abstract fun providerAuthRepository(remote: AuthRemoteDataSource): AuthRepository
+    abstract fun providerAuthRepository(authRepository: AuthRepositoryImpl): AuthRepository
 
     @Binds
-    @Singleton
-    abstract fun provideRemoteDataSource(api: WanAndroidNetworkApi): AuthRemoteDataSource
+    abstract fun provideRemoteDataSource(dataSource: AuthRemoteDataSourceImpl): AuthRemoteDataSource
 }

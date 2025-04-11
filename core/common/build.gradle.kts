@@ -5,10 +5,6 @@ plugins {
 
 android {
     namespace = "com.riane.common"
-
-    defaultConfig {
-        consumerProguardFiles("consumer-rules.pro")
-    }
 }
 
 dependencies {

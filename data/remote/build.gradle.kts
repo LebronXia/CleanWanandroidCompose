@@ -6,10 +6,6 @@ plugins {
 
 android {
     namespace = "com.riane.remote"
-
-    defaultConfig {
-        consumerProguardFiles("consumer-rules.pro")
-    }
 }
 
 dependencies {
@@ -21,7 +17,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(project(":core:network"))
-    implementation(project(":domain:auth"))
+    implementation(project(":domain:domain-auth"))
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     ksp("org.mapstruct:mapstruct-processor:1.5.5.Final")
 }

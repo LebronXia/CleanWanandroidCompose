@@ -5,10 +5,6 @@ plugins {
 
 android {
     namespace = "com.riane.repository"
-
-    defaultConfig {
-        consumerProguardFiles("consumer-rules.pro")
-    }
 }
 
 dependencies {
@@ -21,5 +17,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(project(":core:common"))
     implementation(project(":data:remote"))
-    implementation(project(":domain:auth"))
+    implementation(project(":domain:domain-auth"))
 }

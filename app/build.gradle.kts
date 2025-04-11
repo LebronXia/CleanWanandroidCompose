@@ -19,6 +19,9 @@ android {
     }
 
     buildTypes {
+        debug{
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -37,6 +40,7 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:feature-auth"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -54,5 +58,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.hilt.navigation.compose)
-    ksp(libs.hilt.compiler)
+
+
 }

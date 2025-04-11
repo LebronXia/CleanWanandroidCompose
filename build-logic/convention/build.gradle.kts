@@ -4,7 +4,7 @@ plugins {
    // `kotlin-dsl-precompiled-script-plugins` // 支持预编译插件
 }
 
-group = "com.google.samples.apps.nowinandroid.buildlogic"
+group = "com.riane.cleanwanandroidcompose.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17

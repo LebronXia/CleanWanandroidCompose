@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.riane.auth"
+    namespace = "com.riane.feature.auth"
 }
 
 dependencies {
@@ -16,5 +16,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(project(":data:repository"))
-    implementation(project(":domain:auth"))
+    implementation(project(":domain:domain-auth"))
 }

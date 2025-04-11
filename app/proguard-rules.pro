@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepclassmembers class * extends dagger.hilt.processor.internal.aggregateddeps.AggregatedDeps {
+    *;
+}
+-keep class dagger.hilt.** { *; }
+-keep class * extends dagger.hilt.AndroidEntryPoint

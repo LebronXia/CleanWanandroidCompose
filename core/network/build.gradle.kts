@@ -6,9 +6,6 @@ plugins {
 
 android {
     namespace = "com.riane.network"
-    buildFeatures {
-        buildConfig = true
-    }
 }
 
 dependencies {

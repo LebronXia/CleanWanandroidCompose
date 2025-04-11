@@ -20,8 +20,6 @@ import com.riane.network.model.BaseResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
 
 //sealed interface Result<out T> {
 //    data class Success<T>(val data: T) : Result<T>
@@ -47,7 +45,7 @@ suspend fun <T : Any, R : Any> safeApiCall(
                 Result.failure(e) // 转换错误处理
             }
         } else {
-            Result.failure(RequestFailedException(response.errorCode, response.errorMsg))
+            Result.failure(RequestFailedException(response.errorCode.toString(), response.errorMsg))
         }
     } catch (e: Exception) {
         Result.failure(e)

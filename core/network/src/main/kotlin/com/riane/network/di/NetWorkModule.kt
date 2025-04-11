@@ -1,3 +1,5 @@
+package com.riane.network.di
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object NetWorkModule {
+object NetWorkModule {
 
     @Provides
     @Singleton
@@ -20,6 +22,6 @@ internal object NetWorkModule {
 
     @Provides
     @Singleton
-    fun providerRetrofit(okHttpClient: OkHttpClient): Retrofit =
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder().baseUrl("xxxx").client(okHttpClient).build()
 }
