@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.wanandroid.android.library)
+    alias(libs.plugins.wanandroid.android.library.compose)
     alias(libs.plugins.wanandroid.hilt)
 }
 

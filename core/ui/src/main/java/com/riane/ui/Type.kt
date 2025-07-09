@@ -1,4 +1,4 @@
-package com.riane.cleanwanandroidcompose.ui.theme
+package com.riane.ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

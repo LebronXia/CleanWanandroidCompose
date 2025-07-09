@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.riane.feature.auth"
+    namespace = "com.riane.feature.home"
 }
 
 dependencies {

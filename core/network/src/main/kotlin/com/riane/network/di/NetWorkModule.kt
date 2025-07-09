@@ -23,5 +23,5 @@ object NetWorkModule {
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder().baseUrl("xxxx").client(okHttpClient).build()
+        Retrofit.Builder().baseUrl("https://www.wanandroid.com").client(okHttpClient).build()
 }

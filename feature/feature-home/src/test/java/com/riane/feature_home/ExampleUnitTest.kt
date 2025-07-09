@@ -1,4 +1,4 @@
-package com.riane.cleanwanandroidcompose
+package com.riane.feature_home
 
 import org.junit.Test
 
