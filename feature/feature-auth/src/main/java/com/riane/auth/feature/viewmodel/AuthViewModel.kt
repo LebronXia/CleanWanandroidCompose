@@ -1,5 +1,6 @@
 package com.riane.auth.feature.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.riane.auth.usecase.LoginByPasswordUseCase
@@ -34,7 +35,8 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch() {
             loginUseCase(username, password).onSuccess{
                 _uiState.value = LoginUiState.Success(it)
-            }.onFailure{
+            }.onFailure{ e ->
+                Log.d("login", e.toString())
                 _uiState.value = LoginUiState.Error
             }
         }

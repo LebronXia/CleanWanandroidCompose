@@ -1,5 +1,6 @@
 package com.riane.auth.feature.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,7 +45,8 @@ internal fun LoginScreen(
     val focusManager = LocalFocusManager.current
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize() ,
+        contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier
@@ -79,6 +81,8 @@ internal fun LoginScreen(
 
             Button(
                 onClick = {
+                    Log.d("login","点击登录$medicalNumber + $password")
+                    viewModel.login(medicalNumber, password)
                     focusManager.clearFocus()
                 },
                 modifier = Modifier.fillMaxWidth().height(48.dp),

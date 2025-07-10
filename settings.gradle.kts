@@ -13,6 +13,7 @@ pluginManagement {
         maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
         maven { url = uri("https://mirrors.tencent.com/nexus/repository/maven-public") }
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
         gradlePluginPortal()
     }
 }
@@ -31,6 +32,7 @@ dependencyResolutionManagement {
         maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
         maven { url = uri("https://mirrors.tencent.com/nexus/repository/maven-public") }
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 

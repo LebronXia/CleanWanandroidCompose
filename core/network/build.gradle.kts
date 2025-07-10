@@ -13,8 +13,9 @@ dependencies {
     api(libs.coil.kt)
     api(libs.coil.kt.svg)
     api(libs.kotlinx.serialization.json)
-    api(libs.okhttp.logging)
+    //api(libs.okhttp.logging)
     api(libs.retrofit.core)
     api(libs.retrofit.kotlin.serialization)
+    api(libs.okhttp.logging2)
     testImplementation(libs.kotlinx.coroutines.test)
 }
