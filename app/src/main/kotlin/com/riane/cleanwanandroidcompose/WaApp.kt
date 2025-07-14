@@ -1,5 +1,6 @@
 package com.riane.cleanwanandroidcompose
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
@@ -17,6 +18,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.riane.auth.feature.navigation.AuthRoutes
 import com.riane.cleanwanandroidcompose.navigation.WaNavHost
 import com.riane.cleanwanandroidcompose.ui.AppBottomBar
 import com.riane.feature_home.navigation.HomeRoutes
@@ -28,7 +30,8 @@ fun WaApp() {
     val mainAppState = rememberMainState(navController)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    val shouldShowBottomBar = currentDestination?.route in setOf(HomeRoutes.HOME)
+    val shouldShowBottomBar = currentDestination?.route in setOf(HomeRoutes.HOME, AuthRoutes.LOGIN, "")
+    Log.d("waApp1", currentDestination?.route ?: "没有")
 
     Scaffold(
         modifier = Modifier
@@ -56,9 +59,11 @@ fun WaApp() {
                 .fillMaxSize()
                 .padding(it)
         ){
-            WaNavHost()
+            WaNavHost(navController)
         }
     }
+
+    Log.d("waApp2", currentDestination?.route ?: "没有")
 
 }
 

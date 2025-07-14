@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.riane.auth.feature.navigation.AuthRoutes
 import com.riane.auth.feature.navigation.loginSection
+import com.riane.feature_home.navigation.HomeRoutes
 import com.riane.feature_home.navigation.homeSection
 
 
@@ -15,7 +16,7 @@ fun WaNavHost(
 ) {
 
     NavHost(navController = navController,
-        startDestination = AuthRoutes.ROOT
+        startDestination = HomeRoutes.ROOT
         ) {
         loginSection(
             onTopClick = {}

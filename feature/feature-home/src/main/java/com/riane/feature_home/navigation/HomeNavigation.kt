@@ -11,7 +11,6 @@ import kotlinx.serialization.Serializable
 object HomeRoutes {
     const val ROOT = "home_route"
     const val HOME = "home"
-    const val REGISTER = "register"
 }
 
 //@Serializable

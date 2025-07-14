@@ -1,6 +1,7 @@
 package com.riane.cleanwanandroidcompose.ui
 
 import android.graphics.drawable.Drawable
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
@@ -17,10 +18,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +39,7 @@ import androidx.navigation.NavHostController
 import com.riane.cleanwanandroidcompose.BottomNavigationItem
 import com.riane.cleanwanandroidcompose.MainAppState
 import com.riane.cleanwanandroidcompose.R
+import com.riane.ui.WhiteBackground
 
 @Composable
 fun AppBottomBar(navControl: NavHostController, mainAppState: MainAppState) {
@@ -43,17 +47,19 @@ fun AppBottomBar(navControl: NavHostController, mainAppState: MainAppState) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .height(60.dp)
             .background(
-                color = Color.Black,
+                color = WhiteBackground,
                 shape = RoundedCornerShape(topStart = 12F.dp, topEnd = 12F.dp)
             ).navigationBarsPadding(),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         val selected = false
+        Log.d("xm", mainAppState.mainTopLevelDestinations.size.toString()?: "0")
         mainAppState.mainTopLevelDestinations
             .forEach { des ->
                 BottomNavigationItem(des, mainAppState::navigateToMainTopLevelDestination,{
-                }, isSelected = selected)
+                }, isSelected = selected, Modifier.weight(1F))
             }
 
     }
@@ -64,10 +70,12 @@ fun BottomNavigationItem(item: BottomNavigationItem,
                          navigateToTopLevelDestination: (BottomNavigationItem, (Boolean) -> Unit) -> Unit,
                          onClick: () -> Unit,
                          isSelected: Boolean,
+                         modifier: Modifier = Modifier
                          ){
 
     Column(
-        modifier = Modifier.clickable {
+        modifier = modifier.fillMaxHeight()
+            .clickable {
             navigateToTopLevelDestination(item, {})
         },
         horizontalAlignment = Alignment.CenterHorizontally,
