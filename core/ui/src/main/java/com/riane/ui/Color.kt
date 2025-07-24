@@ -1,5 +1,8 @@
 package com.riane.ui
 
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
@@ -12,3 +15,27 @@ val Pink40 = Color(0xFF7D5260)
 val color_white_transparent_1A = Color(0x1AFFFFFF)
 val WhiteWindow = Color(0xFFF5F6F7)
 val WhiteBackground = Color(0xFFFFFFFF)
+val Red = Color(0xFFFF2E4D)
+
+@Immutable
+data class LorenColors(
+    val theme: Color,
+    val window: Color,
+    val background: Color,
+    val title: Color,
+    val body: Color,
+    val icon: Color,
+    val divider: Color
+)
+
+val DarkColorScheme = darkColorScheme(
+    primary = Purple80,
+    secondary = PurpleGrey80,
+    tertiary = Pink80
+)
+
+val LightColorScheme = lightColorScheme(
+    primary = Purple40,
+    secondary = PurpleGrey40,
+    tertiary = Pink40
+)

@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.riane.featture_profile.navigation.navigateToMine
 import com.riane.feature_home.navigation.navigateToHome
 
 @Composable
@@ -44,7 +45,7 @@ class MainAppState(
             }
 
             BottomNavigationItem.Profile -> {
-                navController.navigateToHome()
+                navController.navigateToMine()
                 changeStatusBarIconMode(false)
             }
 

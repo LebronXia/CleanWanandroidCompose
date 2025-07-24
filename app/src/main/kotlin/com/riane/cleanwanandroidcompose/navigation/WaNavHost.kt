@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.riane.auth.feature.navigation.AuthRoutes
 import com.riane.auth.feature.navigation.loginSection
+import com.riane.featture_profile.navigation.profileSection
 import com.riane.feature_home.navigation.HomeRoutes
 import com.riane.feature_home.navigation.homeSection
 
@@ -22,6 +23,9 @@ fun WaNavHost(
             onTopClick = {}
         )
         homeSection(
+            onTopClick = {}
+        )
+        profileSection(
             onTopClick = {}
         )
 

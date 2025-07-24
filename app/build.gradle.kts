@@ -42,6 +42,9 @@ dependencies {
 
     implementation(project(":feature:feature-auth"))
     implementation(project(":feature:feature-home"))
+    implementation(project(":feature:feature-hotspot"))
+    implementation(project(":feature:feature_system"))
+    implementation(project(":feature:feature-profile"))
     implementation(project(":core:ui"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -51,6 +54,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(project(":core:utils"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

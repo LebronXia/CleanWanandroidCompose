@@ -50,6 +50,10 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 "androidTestImplementation"(
                     libs.findLibrary("androidx.lifecycle.runtimeTesting").get(),
                 )
+                "testImplementation"(libs.findLibrary("junit").get())
+                "androidTestImplementation"(libs.findLibrary("junit").get())
+                "androidTestImplementation"(libs.findLibrary("androidx.espresso.core").get())
+
             }
         }
     }

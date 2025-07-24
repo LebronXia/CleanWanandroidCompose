@@ -40,6 +40,7 @@ import com.riane.cleanwanandroidcompose.BottomNavigationItem
 import com.riane.cleanwanandroidcompose.MainAppState
 import com.riane.cleanwanandroidcompose.R
 import com.riane.ui.WhiteBackground
+import com.riane.utils.clickableWithNoRipple
 
 @Composable
 fun AppBottomBar(navControl: NavHostController, mainAppState: MainAppState) {
@@ -75,9 +76,9 @@ fun BottomNavigationItem(item: BottomNavigationItem,
 
     Column(
         modifier = modifier.fillMaxHeight()
-            .clickable {
-            navigateToTopLevelDestination(item, {})
-        },
+            .clickableWithNoRipple{
+                navigateToTopLevelDestination(item, {})
+           },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){

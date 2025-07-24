@@ -21,6 +21,7 @@ import androidx.navigation.toRoute
 import com.riane.auth.feature.navigation.AuthRoutes
 import com.riane.cleanwanandroidcompose.navigation.WaNavHost
 import com.riane.cleanwanandroidcompose.ui.AppBottomBar
+import com.riane.featture_profile.navigation.ProfileRoutes
 import com.riane.feature_home.navigation.HomeRoutes
 
 @Composable
@@ -30,7 +31,7 @@ fun WaApp() {
     val mainAppState = rememberMainState(navController)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    val shouldShowBottomBar = currentDestination?.route in setOf(HomeRoutes.HOME, AuthRoutes.LOGIN, "")
+    val shouldShowBottomBar = currentDestination?.route in setOf(HomeRoutes.HOME, ProfileRoutes.MINE, "")
     Log.d("waApp1", currentDestination?.route ?: "没有")
 
     Scaffold(

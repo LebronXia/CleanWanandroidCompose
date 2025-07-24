@@ -11,5 +11,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(project(":data:repository"))
-    implementation(project(":domain:domain-auth"))
+    //implementation(project(":domain:domain-auth"))
+    implementation(libs.coil.kt.compose)
+    implementation(project(":core:utils"))
 }

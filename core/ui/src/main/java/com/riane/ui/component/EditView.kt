@@ -42,7 +42,6 @@ fun LoginEditView(
     onValueChanged: (String) -> Unit,
     modifier: Modifier = Modifier,
     isPassword: Boolean = false,
-
     enabled: Boolean = true,
     readOnly: Boolean = false,
     textStyle: TextStyle = TextStyle.Default,
