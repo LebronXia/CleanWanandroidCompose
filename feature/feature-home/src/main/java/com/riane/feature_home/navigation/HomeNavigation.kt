@@ -13,12 +13,6 @@ object HomeRoutes {
     const val HOME = "home"
 }
 
-//@Serializable
-//sealed class HomeBaseRoute {
-//    @Serializable
-//    object HomeRoute : HomeBaseRoute()
-//}
-
 fun NavController.navigateToHome() = navigate(HomeRoutes.HOME)
 
 

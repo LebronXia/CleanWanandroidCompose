@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import com.riane.featture_profile.ui.MineScreen
 import com.riane.featture_profile.ui.ProfileScreen
 
 object ProfileRoutes {
@@ -20,6 +21,7 @@ fun NavGraphBuilder.profileSection(
     navigation(startDestination = ProfileRoutes.MINE, route = ProfileRoutes.ROOT){
         composable(route = ProfileRoutes.MINE){
             ProfileScreen()
+            //MineScreen()
         }
 
     }

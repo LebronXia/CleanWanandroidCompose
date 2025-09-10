@@ -42,9 +42,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -60,6 +64,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
@@ -68,45 +73,92 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.riane.featture_profile.ColorSaver
 import com.riane.featture_profile.NestedScrollMeState
+import com.riane.featture_profile.rememberNestedScrollMeState
 import com.riane.feature.profile.R
 import com.riane.ui.CleanWanAndroidTheme
 import com.riane.ui.Red
 import com.riane.ui.WhiteBackground
+import com.riane.ui.component.CommonRefresh
 import com.riane.ui.component.CommonRefreshState
 import com.riane.ui.component.WanAndroidTabRow
 import com.riane.ui.component.rememberCommonRefreshState
 import com.riane.utils.cancelRipperClick
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
+import kotlin.random.Random
 
 @Composable
 fun ProfileScreen() {
 
-    Box(
-
-        modifier = Modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center
-    ) {
-
-        Text("我的")
+    val coroutineScope = rememberCoroutineScope()
+    //父布局控制子布局
+    var selectedIndex by rememberSaveable {
+        mutableIntStateOf(0)
     }
+    var isSearchMode by remember { mutableStateOf(false) }
+
+    val state = rememberNestedScrollMeState(coroutineScope)
+    NestedScrollMe(
+        coroutineScope = coroutineScope,
+        state = state,
+        selectedIndex = selectedIndex,
+        updateSelected = {
+            if (it != selectedIndex){
+                selectedIndex = it
+            }
+        },
+        isSearchMode = isSearchMode,
+        updateSearchMode = {
+            isSearchMode = it
+        }
+    )
+
+//    Box(
+//        modifier = Modifier.fillMaxWidth(),
+//        contentAlignment = Alignment.Center
+//    ) {
+//        Text("我的")
+//    }
 }
 
 @Composable
-private fun NestedScrollMe() {
-    val randomColor = Color.Blue
+private fun NestedScrollMe(
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    state: NestedScrollMeState,
+    selectedIndex: Int = 0,
+    updateSelected: (Int) -> Unit = {},
+    isSearchMode: Boolean = false,
+    updateSearchMode: (Boolean) -> Unit = {},
+) {
+    val randomColor = rememberSaveable(state, saver = ColorSaver) {
+        Color(Random.nextInt(0, 100), Random.nextInt(0, 100), Random.nextInt(0, 100), 255)
+    }
 
-//    SubcomposeLayout(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .background(Color.Green)
-//    ) { constraints ->
-//
-//    }
+    SubcomposeLayout(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Green)
+    ) { constraints ->
+
+        val topBar = subcompose("topBar"){
+            MeToolBar(randomColor)
+        }.first().measure(constraints.copy(minHeight = 0, maxHeight = Constraints.Infinity))
+
+        val refreshContent = subcompose("refreshContent"){
+            RefreshContent(topBar.height, randomColor, coroutineScope, state, selectedIndex, updateSelected, isSearchMode, updateSearchMode)
+        }.first().measure(constraints.copy(minHeight = 0, maxHeight = constraints.maxHeight))
+        layout(constraints.maxWidth, constraints.maxHeight){
+            refreshContent.placeRelative(0,0)
+            topBar.placeRelative(0,0)
+
+        }
+    }
 
 }
 
@@ -184,14 +236,80 @@ private fun MeToolBar(randomColor: Color) {
 
 @Composable
 private fun RefreshContent(
+    topBarHeight: Int,
+    randomColor: Color,
     coroutineScope: CoroutineScope,
     state: NestedScrollMeState,
     selectedIndex: Int,
     updateSelected: (Int) -> Unit,
-    isSearchMode: Boolean
+    isSearchMode: Boolean,
+    updateSearchMode: (Boolean) -> Unit,
 ){
 
     val refreshState = rememberCommonRefreshState()
+    CommonRefresh(
+        state = refreshState,
+        onRefresh = {
+
+        }
+    ) {
+
+        SubcomposeLayout(
+            modifier = Modifier.fillMaxSize()
+        ) { constraints ->
+        val functionBar = subcompose("functionBar"){
+                MeFunctionBar(
+                    isSearchMode = isSearchMode,
+                    selectedIndex = selectedIndex,
+                    onTapClick = updateSelected
+                )
+            }.first().measure(constraints.copy(minHeight = 0, maxHeight = Constraints.Infinity))
+            state.functionBarHeight = functionBar.height
+
+            val contentBar = subcompose("contentBar"){
+                MeTabContent(
+                    randomColor = randomColor,
+                    with(LocalDensity.current){topBarHeight.toDp()},
+                    with(LocalDensity.current){functionBar.height.toDp()}
+                )
+            }.first().measure(constraints.copy(minHeight = 0, maxHeight = Constraints.Infinity))
+            state.contentBarHeight = contentBar.height
+
+            val backgroundImage = subcompose("backgroundImage"){
+                //背景图（跟随下拉移动）
+                AsyncImage(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer {
+                            translationY = -refreshState.indicatorOffset
+                        },
+                    model = R.drawable.pic_vitality,
+                    contentDescription = "background",
+                    contentScale = ContentScale.Crop,
+                )
+            }.first().measure(
+                constraints.copy(
+                    minHeight = (state.contentBarHeight + refreshState.indicatorOffset.coerceAtLeast(0f)).toInt(),
+                    maxHeight = Constraints.Infinity
+                )
+            )
+
+            val viewPager = subcompose("viewPager"){
+                MeViewPager(state, refreshState, isSearchMode, selectedIndex, updateSelected)
+            }.first().measure(constraints.copy(minHeight = 0, maxHeight = constraints.maxHeight - topBarHeight - functionBar.height))
+
+            //这是一个自定义布局，它将布局尺寸设置为最大约束的宽高。
+            //placeRelative是Placeable类的方法，用于将子组件放置在相对于当前布局的位置。
+            layout(constraints.maxWidth, constraints.maxHeight){
+                backgroundImage.placeRelative(0, state.offset.toInt().coerceAtMost(0))
+                contentBar.placeRelative(0, state.offset.toInt())
+                functionBar.placeRelative(0, contentBar.height - functionBar.height + state.offset.toInt())
+                viewPager.placeRelative(0, contentBar.height + state.offset.toInt())
+            }
+        }
+
+    }
+
 }
 
 @Composable
@@ -286,7 +404,8 @@ private fun MeTabContent(randomColor: Color, topSpace: Dp, bottomSpace: Dp) {
 @Composable
 private fun MeFunctionBar(
     isSearchMode: Boolean,
-    selectedIndex: Int
+    selectedIndex: Int,
+    onTapClick: (Int) -> Unit
 ) {
     var userInput = remember { mutableStateOf("") }
     val width = LocalView.current.width
@@ -332,7 +451,7 @@ private fun MeFunctionBar(
                         .padding(bottom = 6.dp)
                         .padding(horizontal = 16.dp)
                         .cancelRipperClick {
-
+                            onTapClick(index)
                         },
                     contentAlignment = Alignment.Center
                     ){
@@ -429,11 +548,29 @@ private fun MeFunctionBar(
 private fun MeViewPager(
     state: NestedScrollMeState,
     refreshState: CommonRefreshState,
-    isSearchMode: Boolean
+    isSearchMode: Boolean,
+    selectedIndex: Int,
+    pageScroll: (Int) -> Unit,
 ) {
     val pageCount = stringArrayResource(id = R.array.me_tab).size
     val pageState = rememberPagerState(initialPage = 0){
         pageCount
+    }
+
+    //tabView控制ViewPager
+    LaunchedEffect(selectedIndex) {
+        if (pageState.targetPage != selectedIndex){
+            pageState.animateScrollToPage(selectedIndex)
+        }
+    }
+
+    //ViewPager控制tabView
+    LaunchedEffect(pageState.targetPage) {
+        snapshotFlow {
+            pageState.targetPage
+        }.collect{
+            pageScroll(it)
+        }
     }
 
     HorizontalPager(

@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -23,6 +25,7 @@ import com.riane.cleanwanandroidcompose.navigation.WaNavHost
 import com.riane.cleanwanandroidcompose.ui.AppBottomBar
 import com.riane.featture_profile.navigation.ProfileRoutes
 import com.riane.feature_home.navigation.HomeRoutes
+import com.riane.ui.CleanWanandroidComposeTheme
 
 @Composable
 fun WaApp() {
@@ -35,10 +38,11 @@ fun WaApp() {
     Log.d("waApp1", currentDestination?.route ?: "没有")
 
     Scaffold(
-        modifier = Modifier
-            .statusBarsPadding()
-            .navigationBarsPadding(),
-
+//        modifier = Modifier
+//            .statusBarsPadding()
+//            .navigationBarsPadding(),
+        contentWindowInsets = WindowInsets(0, 0, 0, 0), // 这里这样写原因是"我的"页面是沉浸式
+        containerColor = Color(0xFFFFFFFF),
         bottomBar = {
             //动画转场
             AnimatedVisibility(
