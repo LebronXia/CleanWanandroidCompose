@@ -3,6 +3,7 @@ package com.riane.ui
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
@@ -16,6 +17,8 @@ val color_white_transparent_1A = Color(0x1AFFFFFF)
 val WhiteWindow = Color(0xFFF5F6F7)
 val WhiteBackground = Color(0xFFFFFFFF)
 val Red = Color(0xFFFF2E4D)
+val BlackWindow = Color(0xFF111111)
+val BlackBackground = Color(0xFF1F1D1D)
 
 @Immutable
 data class LorenColors(
@@ -28,14 +31,25 @@ data class LorenColors(
     val divider: Color
 )
 
-val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+val lightLorenColors = LorenColors(
+    theme = Purple80,
+    window = WhiteWindow,
+    background = WhiteBackground,
+    title = Color.Black,
+    body = Color(0xFF666666),
+    icon = Color.Black,
+    divider = Color.LightGray
 )
 
-val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+val darkLorenColors = LorenColors(
+    theme = Purple80,
+    window = BlackWindow,
+    background = BlackBackground,
+    title = Color.White,
+    body = Color(0xFF666666),
+    icon = Color.White,
+    divider = Color.DarkGray
 )
+
+
+val LocalCustomColors = staticCompositionLocalOf { lightLorenColors }

@@ -31,6 +31,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = "com.android.library")
             apply(plugin = "org.jetbrains.kotlin.android")
+            apply(plugin ="kotlinx-serialization")
            // apply(plugin = "nowinandroid.android.lint")
 
             extensions.configure<LibraryExtension> {
@@ -53,10 +54,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             dependencies {
                 "androidTestImplementation"(libs.findLibrary("kotlin.test").get())
                 "testImplementation"(libs.findLibrary("kotlin.test").get())
-
                 "implementation"(libs.findLibrary("androidx.tracing.ktx").get())
                 "implementation"(libs.findLibrary("androidx.navigation.compose").get())
                 "implementation"(libs.findLibrary("androidx.hilt.navigation.compose").get())
+                "implementation"(libs.findLibrary("kotlinx.serialization.json").get())
             }
         }
     }

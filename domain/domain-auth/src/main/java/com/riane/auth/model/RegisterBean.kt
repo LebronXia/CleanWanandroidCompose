@@ -1,4 +1,4 @@
-package com.xiamu.wanandroid.mvvm.model.entry
+package com.riane.auth.model
 
 
 data class RegisterBean(

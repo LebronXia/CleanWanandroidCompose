@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 
-package com.riane.network
+package com.riane.remote
 
+import com.riane.network.NullBodyException
+import com.riane.network.RequestFailedException
 import com.riane.network.model.BaseResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 //sealed interface Result<out T> {
 //    data class Success<T>(val data: T) : Result<T>
@@ -38,6 +42,7 @@ suspend fun <T : Any, R : Any> safeApiCall(
     return try {
         val response = call()
         if (response.isSuccess()) {
+            Result
             val dto = response.data ?: throw NullBodyException()
             try {
                 Result.success(transform(dto))
@@ -60,4 +65,39 @@ fun <T : Any, R : Any> safeApiCallAsFlow(
     emit(safeApiCall(call, transform))
 }.catch { e ->
     emit(Result.failure(e))
+}.flowOn(Dispatchers.IO)
+
+
+suspend fun <T : Any> safeApiCall(
+    call: suspend () -> BaseResponse<T>
+): Result<T> {
+    return try {
+        val response = call()
+        if (response.isSuccess()) {
+            val dto = response.data ?: throw NullBodyException()
+            try {
+                Result.success(dto)
+            } catch (e: Exception) {
+                Result.failure(e) // 转换错误处理
+            }
+        } else {
+            Result.failure(RequestFailedException(response.errorCode.toString(), response.errorMsg))
+        }
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
 }
+
+//call: BaseResponse<ListWrapper<ArticleBean>>
+
+fun <T : Any> safeApiCallAsFlow(
+    call: suspend () -> BaseResponse<T>
+): Flow<Result<T>> = flow {
+    //emit(Result.Loading)
+    emit(safeApiCall(call))
+}.catch { e ->
+    emit(Result.failure(e))
+}.flowOn(Dispatchers.IO)
+
+
+

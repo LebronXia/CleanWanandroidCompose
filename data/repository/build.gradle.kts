@@ -15,7 +15,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.paging.compose)
     implementation(project(":core:common"))
+    implementation(project(":core:network"))
     implementation(project(":data:remote"))
     implementation(project(":domain:domain-auth"))
+    implementation(project(":domain:domian-home"))
 }

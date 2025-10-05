@@ -4,8 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.riane.auth.usecase.LoginByPasswordUseCase
-import com.xiamu.wanandroid.mvvm.model.entry.LoginBean
-import dagger.assisted.AssistedFactory
+import com.riane.auth.model.LoginBean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

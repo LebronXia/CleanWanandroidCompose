@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.wanandroid.android.library)
     alias(libs.plugins.wanandroid.hilt)
-    id("kotlinx-serialization")
 }
 
 android {
@@ -16,8 +15,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.paging.compose)
     implementation(project(":core:network"))
     implementation(project(":domain:domain-auth"))
+    implementation(project(":domain:domian-home"))
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     ksp("org.mapstruct:mapstruct-processor:1.5.5.Final")
 }

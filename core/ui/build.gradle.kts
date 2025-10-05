@@ -19,4 +19,8 @@ dependencies {
     api(libs.androidx.compose.ui.util)
 
     implementation(libs.coil.kt.compose)
+    implementation(libs.androidx.paging.compose)
+    implementation(project(":core:utils"))
+    implementation(libs.coil.kt.compose)
+    implementation(libs.coil.kt)
 }

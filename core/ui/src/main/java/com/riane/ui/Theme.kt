@@ -8,32 +8,57 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
 
+enum class AppThemeType {
+    FOLLOW_SYSTEM, Light, Dark;
+
+    companion object {
+        fun formatTheme(theme: Int? = 1): AppThemeType {
+            entries.forEach {
+                if (it.ordinal == theme) {
+                    return it
+                }
+            }
+            return Light
+        }
+
+        @Composable
+        fun isDark(themeType: AppThemeType): Boolean {
+            return when (themeType) {
+                FOLLOW_SYSTEM -> isSystemInDarkTheme()
+                Light -> false
+                Dark -> true
+            }
+        }
+    }
+}
 
 @Composable
 fun CleanWanandroidComposeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    themeType: AppThemeType = AppThemeType.Light,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+
+    val colors =
+        if (AppThemeType.isDark(themeType = themeType)) darkLorenColors else lightLorenColors
+    CompositionLocalProvider(
+        LocalCustomColors provides colors,
+        LocalTextStyles provides CleanWanAndroidTheme.textStyle
+    ) {
+        MaterialTheme(content = content)
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
         content = content
     )
 }
 
 object CleanWanAndroidTheme {
+    val colors: LorenColors
+        @Composable
+        get() = LocalCustomColors.current
     val textStyle: LorenTextStyle
         @Composable
         get() = LocalTextStyles.current

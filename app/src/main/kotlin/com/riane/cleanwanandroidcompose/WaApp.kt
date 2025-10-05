@@ -35,7 +35,6 @@ fun WaApp() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
     val shouldShowBottomBar = currentDestination?.route in setOf(HomeRoutes.HOME, ProfileRoutes.MINE, "")
-    Log.d("waApp1", currentDestination?.route ?: "没有")
 
     Scaffold(
 //        modifier = Modifier

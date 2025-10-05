@@ -1,6 +1,6 @@
 package com.riane.remote.model
 
-import com.xiamu.wanandroid.mvvm.model.entry.LoginBean
+import com.riane.auth.model.LoginBean
 import kotlinx.serialization.Serializable
 import org.mapstruct.Mapper
 import org.mapstruct.factory.Mappers

@@ -2,6 +2,7 @@ package com.riane.feature_home.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -17,11 +18,12 @@ fun NavController.navigateToHome() = navigate(HomeRoutes.HOME)
 
 
 fun NavGraphBuilder.homeSection(
+    navController : NavHostController,
     onTopClick: (String) -> Unit,
 ){
     navigation(startDestination = HomeRoutes.HOME, route = HomeRoutes.ROOT){
         composable(route = HomeRoutes.HOME){
-            HomeScreen()
+            HomeScreen(navCtrl = navController)
         }
 
     }

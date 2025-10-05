@@ -1,8 +1,6 @@
 package com.riane.remote.source
 
-import com.riane.remote.model.LoginDto
-import com.xiamu.wanandroid.mvvm.model.entry.LoginBean
-import retrofit2.http.Field
+import com.riane.auth.model.LoginBean
 
 interface AuthRemoteDataSource {
 

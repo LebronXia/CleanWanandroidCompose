@@ -174,6 +174,8 @@ private fun MeToolBar(randomColor: Color) {
     }
 
     val dynamicColor = remember {
+        //使用 derivedStateOf 避免每次重组都重新排序/过滤
+        //当依赖的状态变化时，重新执行计算，但只在计算结果变化时才触发读取该值的 Composable 重组。
         derivedStateOf { randomColor.copy(alpha = fraction.floatValue) }
     }
 

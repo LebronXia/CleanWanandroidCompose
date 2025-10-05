@@ -23,6 +23,7 @@ fun WaNavHost(
             onTopClick = {}
         )
         homeSection(
+            navController = navController,
             onTopClick = {}
         )
         profileSection(

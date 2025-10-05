@@ -1,5 +1,6 @@
 package com.riane.remote.di
 
+import com.riane.remote.api.HomeService
 import com.riane.remote.api.WanAndroidNetworkApi
 import dagger.Module
 import dagger.Provides
@@ -17,4 +18,9 @@ internal object ApiModule {
     @Singleton
     fun provideWanAndroidApi(retrofit: Retrofit): WanAndroidNetworkApi =
         retrofit.create(WanAndroidNetworkApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providerHomeService(retrofit: Retrofit): HomeService =
+        retrofit.create(HomeService::class.java)
 }

@@ -10,6 +10,8 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(project(":data:repository"))
-    implementation(project(":domain:domain-auth"))
+    implementation(libs.androidx.paging.compose)
+    //implementation(project(":data:repository"))
+    implementation(project(":domain:domian-home"))
+    implementation(libs.android.constraintlayout.compose)
 }
