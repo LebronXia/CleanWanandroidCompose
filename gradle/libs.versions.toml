@@ -46,6 +46,7 @@ xxpermissions = "23.0"
 # Timber 日志库: https://github.com/JakeWharton/timber
 timber = "5.0.1"
 constraintlayoutCompose = "1.1.0"
+composeDestinations = "1.11.8"
 
 
 
@@ -127,6 +128,9 @@ xxpermissions = { module = "com.github.getActivity:XXPermissions", version.ref =
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 android-constraintlayout-compose = {module = "androidx.constraintlayout:constraintlayout-compose",version.ref = "constraintlayoutCompose" }
 
+#路由跳转https://composedestinations.rafaelcosta.xyz/
+compose-destinations-anim-core = { group = "io.github.raamcosta.compose-destinations", name = "animations-core", version.ref = "composeDestinations" }
+compose-destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "composeDestinations" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

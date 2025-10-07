@@ -9,6 +9,7 @@ import com.riane.auth.feature.navigation.loginSection
 import com.riane.featture_profile.navigation.profileSection
 import com.riane.feature_home.navigation.HomeRoutes
 import com.riane.feature_home.navigation.homeSection
+import com.riane.feature_home.navigation.searchSection
 
 
 @Composable
@@ -27,6 +28,10 @@ fun WaNavHost(
             onTopClick = {}
         )
         profileSection(
+            onTopClick = {}
+        )
+        searchSection(
+            navController = navController,
             onTopClick = {}
         )
 

@@ -1,5 +1,6 @@
 package com.riane.feature_home.ui
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.riane.feature_home.navigation.SearchRoutes
 import com.riane.feature_home.viewModel.HomeViewModel
 import com.riane.ui.component.HomeSearchBar
 import com.riane.ui.component.TextTabBar
@@ -61,7 +63,13 @@ fun HomeScreen(
         HomeSearchBar(
             onSearchClick = {
                 // RouteUtils.navTo(navCtrl, RouteName.ARTICLE_SEARCH + "/111")
-                viewModel.setShowSettingsDialog(true)
+                //viewModel.setShowSettingsDialog(true)
+
+                navCtrl.navigate(
+                    "${SearchRoutes.SEARCH}/${
+                        "哈哈哈哈"
+                    }"
+                )
             }
         )
 

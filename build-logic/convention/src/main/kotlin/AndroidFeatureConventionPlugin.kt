@@ -48,6 +48,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("androidx.navigation.compose").get())
                 "implementation"(libs.findLibrary("androidx.tracing.ktx").get())
                 "implementation"(libs.findLibrary("kotlinx.serialization.json").get())
+                "implementation"(libs.findLibrary("compose.destinations.anim.core").get())
+                "ksp"(libs.findLibrary("compose.destinations.ksp").get())
 
                 "testImplementation"(libs.findLibrary("androidx.navigation.testing").get())
                 "androidTestImplementation"(
@@ -56,6 +58,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 "testImplementation"(libs.findLibrary("junit").get())
                 "androidTestImplementation"(libs.findLibrary("junit").get())
                 "androidTestImplementation"(libs.findLibrary("androidx.espresso.core").get())
+
+
 
             }
         }
