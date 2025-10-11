@@ -16,6 +16,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.paging.compose)
+    implementation(libs.play.services.auth.api.phone)
+    implementation(libs.play.services.location)
+
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     implementation(project(":core:common"))
     implementation(project(":core:network"))
     implementation(project(":data:remote"))

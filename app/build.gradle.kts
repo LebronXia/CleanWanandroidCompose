@@ -22,8 +22,18 @@ android {
 //        }
     }
 
+    signingConfigs {
+        create("common") {
+            storeFile = rootProject.file("./src/wanandroiod.jts")
+            storePassword =  "123456"
+            keyAlias = "android"
+            keyPassword =  "123456"
+        }
+    }
+
     buildTypes {
         debug{
+            signingConfig = signingConfigs["common"]
             isMinifyEnabled = false
         }
         release {
