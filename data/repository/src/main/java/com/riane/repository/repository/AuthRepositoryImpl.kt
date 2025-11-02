@@ -20,6 +20,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun loginByGoogle(dataMap: Map<String, Any>, context: Context){
         //GoogleSignInOptions()
+        // https://juejin.cn/post/7183633464069980216
         //https://developer.android.com/identity/sign-in/credential-manager-siwg?hl=zh-cn
         val WEB_CLIENT_ID =
             "154550599425-vqrcqt4d6bhldg7dkc8un8rai2eg9cd8.apps.googleusercontent.com"

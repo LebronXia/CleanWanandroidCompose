@@ -27,4 +27,7 @@ dependencies {
     implementation(project(":data:remote"))
     implementation(project(":domain:domain-auth"))
     implementation(project(":domain:domian-home"))
+
+    implementation(libs.google.pay.billing)
+    implementation(libs.google.pay.billing.ktx)
 }
